@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/graphics/backgrounds/clouds-transparent.png" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/backgrounds/desert-backgorund.png" type="Texture" id=2]
+[ext_resource path="res://scripts/interface/background.gd" type="Script" id=3]
+
+[node name="Background" type="ParallaxBackground"]
+script = ExtResource( 3 )
+desert_speed = 15.0
+cloud_speed = 30.0
+
+[node name="desert" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 0, 640 )
+
+[node name="desert_texture" type="TextureRect" parent="desert"]
+margin_right = 360.0
+margin_bottom = 640.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="cloud" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 0, 640 )
+
+[node name="cloud_texture" type="TextureRect" parent="cloud"]
+margin_right = 360.0
+margin_bottom = 103.0
+texture = ExtResource( 1 )
+expand = true
