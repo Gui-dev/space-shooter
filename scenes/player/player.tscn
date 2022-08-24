@@ -1,0 +1,163 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/spritesheets/ship.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 7, 7.5 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "left_one"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "left_two"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "right_one"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 8 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "right_two"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 9 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "left_one"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "left_two"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "right_one"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "right_two"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=12]
+blend_point_0/node = SubResource( 7 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 8 )
+blend_point_1/pos = -0.4
+blend_point_2/node = SubResource( 9 )
+blend_point_2/pos = -0.9
+blend_point_3/node = SubResource( 10 )
+blend_point_3/pos = 0.4
+blend_point_4/node = SubResource( 11 )
+blend_point_4/pos = 0.9
+
+[node name="Player" type="Area2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+speed = 1.5
+
+[node name="texture" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 5
+vframes = 2
+frame = 2
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4.5 )
+shape = SubResource( 13 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/left_one = SubResource( 3 )
+anims/left_two = SubResource( 4 )
+anims/right_one = SubResource( 5 )
+anims/right_two = SubResource( 6 )
+
+[node name="animation_tree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../animation")
+active = true
+parameters/blend_position = 0.000537634
