@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/spritesheets/ship.png" type="Texture" id=2]
+[ext_resource path="res://scripts/player/spawn_shoot.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 7, 7.5 )
@@ -133,7 +134,8 @@ blend_point_3/pos = 0.4
 blend_point_4/node = SubResource( 11 )
 blend_point_4/pos = 0.9
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=["player"]]
+position = Vector2( 177, 315 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 speed = 1.5
@@ -161,3 +163,7 @@ tree_root = SubResource( 12 )
 anim_player = NodePath("../animation")
 active = true
 parameters/blend_position = 0.000537634
+
+[node name="spawn_shoot" type="Position2D" parent="."]
+position = Vector2( 0, -13.5 )
+script = ExtResource( 3 )
