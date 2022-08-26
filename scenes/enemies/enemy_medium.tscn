@@ -23,8 +23,9 @@ animations = [ {
 } ]
 
 [node name="EnemyMedium" instance=ExtResource( 1 )]
+scale = Vector2( 2, 2 )
 velocity = Vector2( 0, 2 )
-custom_explosion_scale = Vector2( 3, 3 )
+custom_explosion_scale = Vector2( 2, 2 )
 collision_damage = 1
 health = 4
 score = 2
@@ -36,6 +37,7 @@ shape = SubResource( 1 )
 [node name="texture" parent="." index="1"]
 frames = SubResource( 4 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="spawn_shoot" parent="." index="2"]
