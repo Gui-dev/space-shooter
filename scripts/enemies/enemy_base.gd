@@ -4,7 +4,7 @@ class_name Enemy
 
 var ExplosionFX: PackedScene = preload('res://scenes/prefabs/explosion.tscn')
 var HitSFX: PackedScene = preload('res://scenes/prefabs/hit_enemy_sfx.tscn')
-var can_increase_score = false
+var can_increase_score: bool = false
 onready var notifier: VisibilityNotifier2D = $notifier
 export(Vector2) var velocity
 export(Vector2) var custom_explosion_scale
