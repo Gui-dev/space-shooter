@@ -135,7 +135,6 @@ blend_point_4/node = SubResource( 11 )
 blend_point_4/pos = 0.9
 
 [node name="Player" type="Area2D" groups=["player"]]
-position = Vector2( 177, 315 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 speed = 1.5
@@ -167,3 +166,5 @@ parameters/blend_position = 0.000537634
 [node name="spawn_shoot" type="Position2D" parent="."]
 position = Vector2( 0, -13.5 )
 script = ExtResource( 3 )
+
+[connection signal="area_entered" from="." to="." method="_on_player_area_entered"]

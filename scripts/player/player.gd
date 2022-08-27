@@ -1,10 +1,14 @@
 extends Area2D
 class_name Player
 
-
+signal game_over
+var ExplosionHitFX: PackedScene = preload('res://scenes/prefabs/explosion.tscn')
+var HitSFX: PackedScene = preload('res://scenes/prefabs/hit_sfx.tscn')
 onready var animation_tree: AnimationTree = $animation_tree
 onready var x_screen_size: int = get_viewport().get_visible_rect().size.x
 export(Vector2) var velocity
+export(Vector2) var custom_explosion_scale
+export(int) var health
 export(float) var speed
 
 
@@ -31,3 +35,39 @@ func _verify_position() -> void:
     x_form.origin.x = x_screen_size
     
   set_transform(x_form)
+
+
+func _update_health(damage: int, type: String) -> void:
+  match type:
+    'hurt':
+      if health > 0:
+        _hit_sfx()
+        health -= damage
+        
+  if health <= 0:
+    _create_explosion()
+
+
+func _hit_sfx() -> void:
+  var hitSFX = HitSFX.instance()
+  get_tree().root.call_deferred('add_child', hitSFX)
+
+
+func _create_explosion() -> void:
+  var explosionHitFX = ExplosionHitFX.instance()
+  explosionHitFX.global_position = global_position
+  explosionHitFX.scale = custom_explosion_scale
+  get_tree().root.call_deferred('add_child', explosionHitFX)
+  _kill()
+
+
+func _kill() -> void:
+  emit_signal('game_over')
+  queue_free()
+
+
+func _on_player_area_entered(area: Area2D) -> void:
+  if area.is_in_group('enemy_shot'):
+    _update_health(area.damage, 'hurt')
+  else:
+    _update_health(area.collision_damage, 'hurt')
