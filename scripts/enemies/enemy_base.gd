@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
   translate(velocity)
 
 
-func _create_explosion() -> void:
+func create_explosion() -> void:
   var explosion_fx = ExplosionFX.instance()
   explosion_fx.scale = custom_explosion_scale
   explosion_fx.global_position = global_position
@@ -35,7 +35,7 @@ func _update_health(damage: int) -> void:
   
   if health <= 0:
     can_increase_score = true
-    _create_explosion()
+    create_explosion()
 
 
 func _hit_sfx() -> void:
@@ -45,7 +45,7 @@ func _hit_sfx() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
   if area.is_in_group('player'):
-    _create_explosion()
+    create_explosion()
     
   if area.is_in_group('shot'):
     _update_health(area.damage)
