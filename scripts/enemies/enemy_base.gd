@@ -26,6 +26,10 @@ func create_explosion() -> void:
   explosion_fx.scale = custom_explosion_scale
   explosion_fx.global_position = global_position
   get_tree().root.call_deferred('add_child', explosion_fx)
+  
+  if can_increase_score:
+    get_tree().call_group('interface', 'increase_score', score)
+  
   queue_free()
 
 

@@ -25,7 +25,7 @@ animations = [ {
 [node name="EnemyBig" instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 velocity = Vector2( 0, 1.5 )
-custom_explosion_scale = Vector2( 2, 2 )
+custom_explosion_scale = Vector2( 4, 4 )
 collision_damage = 1
 health = 7
 score = 4
@@ -36,7 +36,6 @@ shape = SubResource( 1 )
 
 [node name="texture" parent="." index="1"]
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="spawn_shoot" parent="." index="2"]

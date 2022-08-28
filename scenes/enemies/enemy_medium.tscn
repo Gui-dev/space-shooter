@@ -25,7 +25,7 @@ animations = [ {
 [node name="EnemyMedium" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
 velocity = Vector2( 0, 2 )
-custom_explosion_scale = Vector2( 2, 2 )
+custom_explosion_scale = Vector2( 3, 3 )
 collision_damage = 1
 health = 4
 score = 2
