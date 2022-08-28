@@ -5,6 +5,7 @@ var score: int
 onready var score_text: Label = $score_container/score_text
 onready var buttons_container: Control = $buttons_container
 onready var final_score: Label = $final_score
+onready var health_hud: Sprite = $health
 
 
 func _ready() -> void:
@@ -16,6 +17,14 @@ func increase_score(value: int) -> void:
   score_text.text = str(score)
 
 
+func update_hud(value: int, type: String) -> void:
+  match type:
+    'heal':
+      health_hud.frame = value
+    'hurt':
+      health_hud.frame = value
+
+
 func game_over() -> void:
   final_score.text = 'Pontuação Final: ' + str(score)
   buttons_container.visible = true
@@ -24,6 +33,7 @@ func game_over() -> void:
 
 func reset() -> void:
     score = 0
+    health_hud.frame = 4
     score_text.text = str(score)
     final_score.visible = false
     

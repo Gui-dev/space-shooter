@@ -43,6 +43,8 @@ func _update_health(damage: int, type: String) -> void:
       if health > 0:
         _hit_sfx()
         health -= damage
+      
+  get_tree().call_group('interface', 'update_hud', health, type)
         
   if health <= 0:
     _create_explosion()

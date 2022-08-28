@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/graphics/spritesheets/ButtonContainer.png" type="Texture" id=1]
 [ext_resource path="res://assets/graphics/spritesheets/ButtonContainerPressed.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/interface/buttons_container.gd" type="Script" id=5]
 [ext_resource path="res://assets/graphics/spritesheets/score.png" type="Texture" id=6]
 [ext_resource path="res://scripts/interface/interface.gd" type="Script" id=7]
+[ext_resource path="res://assets/graphics/spritesheets/armor.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -101,6 +102,13 @@ margin_top = -116.0
 margin_right = 50.5
 margin_bottom = -102.0
 text = "Pontuação Final "
+
+[node name="health" type="Sprite" parent="."]
+position = Vector2( 305, 24 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+hframes = 5
+frame = 4
 
 [connection signal="pressed" from="buttons_container/play_game" to="buttons_container" method="_on_play_game_pressed"]
 [connection signal="pressed" from="buttons_container/quit" to="buttons_container" method="_on_quit_pressed"]
