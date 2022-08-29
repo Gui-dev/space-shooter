@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/prefabs/powerup.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/spritesheets/power-up.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 9.05539
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.0
+} ]
+
+[node name="PowerUp" type="Area2D" groups=["power_up"]]
+scale = Vector2( 1.5, 1.5 )
+collision_layer = 16
+script = ExtResource( 1 )
+velocity = Vector2( 0, 2 )
+heal = 1
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="texture" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
+animation = "idle"
+
+[connection signal="area_entered" from="." to="." method="_on_power_up_area_entered"]

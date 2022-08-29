@@ -37,12 +37,15 @@ func _verify_position() -> void:
   set_transform(x_form)
 
 
-func _update_health(damage: int, type: String) -> void:
+func _update_health(value: int, type: String) -> void:
   match type:
     'hurt':
       if health > 0:
         _hit_sfx()
-        health -= damage
+        health -= value
+    'heal':
+      if health < 4:
+        health += value    
       
   get_tree().call_group('interface', 'update_hud', health, type)
         
@@ -71,5 +74,7 @@ func _kill() -> void:
 func _on_player_area_entered(area: Area2D) -> void:
   if area.is_in_group('enemy_shot'):
     _update_health(area.damage, 'hurt')
+  elif area.is_in_group('power_up'):
+    _update_health(area.heal, 'heal')
   else:
     _update_health(area.collision_damage, 'hurt')
