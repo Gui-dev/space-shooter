@@ -51,6 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="space-shooter"
+run/main_scene="res://scenes/levels/world.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -80,6 +81,7 @@ ui_attack={
 2d_physics/layer_2="Player Shot"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Enemy Shot"
+2d_physics/layer_5="Power Up"
 
 [physics]
 
