@@ -2,6 +2,7 @@ extends Area2D
 class_name Player
 
 signal game_over
+signal shake
 var ExplosionHitFX: PackedScene = preload('res://scenes/prefabs/explosion.tscn')
 var HitSFX: PackedScene = preload('res://scenes/prefabs/hit_sfx.tscn')
 onready var animation_tree: AnimationTree = $animation_tree
@@ -43,6 +44,7 @@ func _update_health(value: int, type: String) -> void:
       if health > 0:
         _hit_sfx()
         health -= value
+        emit_signal('shake', 5, 0.4)
     'heal':
       if health < 4:
         health += value    

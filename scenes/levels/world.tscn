@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/prefabs/spawner_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/interface/background.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://scenes/enemies/enemy_small.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/interface/interface.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/prefabs/power_up.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/prefabs/shake_camera.gd" type="Script" id=9]
+[ext_resource path="res://assets/sfx/spaceship_shooter.ogg" type="AudioStream" id=10]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -24,6 +26,16 @@ spawn_cooldown = 1.0
 [node name="power_up_spawner" parent="." instance=ExtResource( 1 )]
 enemy_ships = [ ExtResource( 8 ) ]
 spawn_cooldown = 10.0
+
+[node name="background_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="shake_camera" type="Camera2D" parent="."]
+position = Vector2( 180, 320 )
+current = true
+script = ExtResource( 9 )
+base_position = Vector2( 180, 320 )
 
 [connection signal="start_game" from="interface/buttons_container" to="." method="start_game"]
 [connection signal="start_game" from="interface/buttons_container" to="enemy_spawner" method="start_game"]

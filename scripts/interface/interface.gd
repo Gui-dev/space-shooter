@@ -6,6 +6,7 @@ onready var score_text: Label = $score_container/score_text
 onready var buttons_container: Control = $buttons_container
 onready var final_score: Label = $final_score
 onready var health_hud: Sprite = $health
+onready var animation: AnimationPlayer = $animation
 
 
 func _ready() -> void:
@@ -22,6 +23,7 @@ func update_hud(value: int, type: String) -> void:
     'heal':
       health_hud.frame = value
     'hurt':
+      animation.play('hit')
       health_hud.frame = value
 
 
